@@ -55,6 +55,12 @@ function App() {
       document.forms[0].elements[i - 1].focus();
     }, 0);
   }
+
+  function toggleTodoCompleteAtIndex(index) {
+    const temporaryTodos = [...todos];
+    temporaryTodos[index].isCompleted = !temporaryTodos[index].isCompleted;
+    setTodos(temporaryTodos);
+  }
   return (
     <div className="App">
       <header className="App-header">
@@ -62,15 +68,19 @@ function App() {
         <form className="todo-list">
           <ul>
             {todos.map((todo, i) => (
-              <div className="todo">
-                <div className="checkbox" />
-                <input
-                  type="text"
-                  value={todo.content}
-                  onChange={e => updateTodoAtIndex(e, i)}
-                  onKeyDown={e => handleKeyDown(e, i)}
-                />
+              <div className={`todo ${todo.isCompleted && 'todo-is-completed'}`}>
+              <div className={'checkbox'} onClick={() => toggleTodoCompleteAtIndex(i)}>
+                {todo.isCompleted && (
+                  <span>&#x2714;</span>
+                )}
               </div>
+              <input
+                type="text"
+                value={todo.content}
+                onKeyDown={e => handleKeyDown(e, i)}
+                onChange={e => updateTodoAtIndex(e, i)}
+              />
+            </div>
             ))}
           </ul>
         </form>
