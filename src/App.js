@@ -5,15 +5,15 @@ import "./App.css";
 function App() {
   const [todos, setTodos] = useState([
     {
-      content: "Pickup dry cleaning",
+      content: "task 1",
       isCompleted: true
     },
     {
-      content: "Get haircut",
+      content: "task 2",
       isCompleted: false
     },
     {
-      content: "Build a todo app in React",
+      content: "task 3",
       isCompleted: false
     }
   ]);
